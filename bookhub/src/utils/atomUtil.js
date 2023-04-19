@@ -1,0 +1,42 @@
+/**
+ * Function will take list of all books and partitions into 
+ * different subarrays of sized 6 (max) in order to account for carousel
+ * @param {*} data : the data to extract from 
+ * @returns the modified array of subarrays
+ */
+function getRowList(data){
+    if(data == undefined) return; 
+    console.log(data);
+    let newData = [];
+    let counter = 0;
+    for(let i = 0; i < data.length; i ++){
+        if(counter == 6 || counter == 0){
+            counter = 0;
+            let temp = [];
+            newData.push(temp);
+        } 
+        newData[Math.floor(i/6)].push(data[i]);
+        counter ++;
+    }
+    console.log(newData);
+    return newData;
+
+}
+
+//this will become API later
+function getImage(id){
+    switch(id){
+        case 1:
+            return "/tempAssets/book1.jpg";
+        case 2:
+            return "/tempAssets/book2.jpg";
+        case 3:
+            return "/tempAssets/book3.jpg";
+        default:
+            //throw new Error("no image");
+            return "/tempAssets/book1.jpg"
+    }
+
+}
+
+export {getImage, getRowList}
