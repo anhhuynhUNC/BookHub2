@@ -1,10 +1,13 @@
+import React from 'react'
+import bookhubLogo from './bookhubLogo.svg'
+
 export default function Navbar() {
 
 
     return (
         <div className={"navbar"}>
             <div className={"logoDiv"}>
-            <img src={"./bookhub logo.png"} />
+            <img src={bookhubLogo} alt="Logo" />
             </div>
             <div className={"title"}>
                 <h1>
