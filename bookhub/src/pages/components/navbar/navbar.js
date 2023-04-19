@@ -4,7 +4,7 @@ export default function Navbar() {
     return (
         <div className={"navbar"}>
             <div className={"logoDiv"}>
-                <h2>Logo here</h2>
+            <img src={"./bookhub logo.png"} />
             </div>
             <div className={"title"}>
                 <h1>
