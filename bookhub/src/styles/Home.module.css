@@ -364,6 +364,8 @@
   position: absolute;
   right: 5px;
   z-index: 3;
+  float: left;
+  display: flex;
 }
 
 .ham {
