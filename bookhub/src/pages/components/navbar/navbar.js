@@ -36,7 +36,15 @@ export default function Navbar() {
                 < Hamburger />
             </div>
 
+            <style jsx>{`
+                .hamDiv{
+                    display: flex;
+                }
+                
+            `}</style>
         </div>
+
+        
 
     )
 }
