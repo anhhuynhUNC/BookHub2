@@ -22,9 +22,9 @@ export default function GuestNavbar() {
                     <input type="text" id="username" name="username"/>
                     <label for="lname">Password:</label>
                     <input type="text" id="password" name="password"/>
-                    <input className={"button"} type="submit" value="Submit"></input>
+                    <input className={"button"} type="submit" value="Log In"></input>
                     </form>
-                    
+
                 <button className={"button"} type="button">Sign Up!</button>
         </div>
             
