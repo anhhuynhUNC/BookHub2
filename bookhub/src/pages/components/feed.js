@@ -5,6 +5,7 @@ import Bookshelf from "./tabs/bookshelfTab";
 import Account from "./tabs/accountTab";
 import { useState, useEffect } from "react";
 import { getBook, getData } from "../../firebaseAPI/firebaseAPI";
+import GuestNavbar from "./guest_navbar/guest_navbar";
 
 import { default_fetch } from "../../utils/bookmatch";
 export default function Feed() {
@@ -30,9 +31,9 @@ export default function Feed() {
         }
     }
 
-    return (
+    return ( //here need to check if someone is logged in, display guest navbar if not
         <div className={"topContainer"}>
-            <Navbar></Navbar>
+            <GuestNavbar></GuestNavbar>
             <div className={"main"}>
                 <div className={"tabHeaderContainer"}>
                     <TabHeader setCurrent={setCurrent} current={current}></TabHeader>

@@ -15,12 +15,13 @@ export default function Hamburger({ isOpen }){
                     justify-content: space-around;
                     flex-flow: column nowrap;
                     z-index: 10;
+                    
                 }
                 .burger{
                     width: 2rem;
                     height: 0.25rem;
                     border-radius: 10px;
-                    background-color: black;
+                    background-color: #DFD5D0;
                     transform-origin: 1px;
                     transition: all 0.3s linear;
                 }

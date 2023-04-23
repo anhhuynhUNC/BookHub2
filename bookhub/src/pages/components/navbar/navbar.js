@@ -1,24 +1,9 @@
 import React from 'react'
 import bookhubLogo from './bookhubLogo.svg'
+import blankProfile from './blank_profile.svg'
 import Hamburger from './HamNav'
 
 export default function Navbar() {
-
-    // var hamburger = React.createClass({ 
-    //     getInitialState : function() {
-    //        return { showMenu : false };
-    //     },
-    //     onClick : function() {
-    //        this.setState({ showMenu : !this.showMenu} );
-    //     },
-    //     render : function() {
-    //         if(this.state.showMe) { 
-    //             return (<div> one div </div>);
-    //         } else { 
-    //             return (< img src={hamburgerLogo} onClick={this.onClick} />);
-    //         } 
-    //     }
-    // })
     
     
     return (
@@ -32,13 +17,18 @@ export default function Navbar() {
                 </h1>
             </div>
             <div className={"hamDiv"}>
-                <img src={bookhubLogo} alt="this will be profile" /> 
-                < Hamburger />
+                <img className={"profile"} src={blankProfile} alt="this will be profile" /> 
+                < Hamburger className={"hamicon"} />
             </div>
 
             <style jsx>{`
                 .hamDiv{
                     display: flex;
+                }
+
+                .profile{
+                    margin-right: 20px;
+                    margin-bottom: 10px;
                 }
                 
             `}</style>
