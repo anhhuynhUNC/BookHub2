@@ -36,6 +36,7 @@ export default function GuestNavbar() {
                     height: fit-content;
                     color: #452B14;
                     background-color: #DFD5D0;
+                    border: none;
                 }
 
                 .signin_or_up {
