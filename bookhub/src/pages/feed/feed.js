@@ -38,7 +38,7 @@ export default function Feed() {
     return ( //here need to check if someone is logged in, display guest navbar if not
         <div className={"topContainer"}>
             {/* login navbar with toggle to signup page */}
-            {(!auth && current !== 4)? <GuestNavbar setAuth = {setAuth} setCurrent = {setCurrent}></GuestNavbar> : <Navbar/>}
+            {(!auth && current !== 4)? <GuestNavbar setAuth = {setAuth} setCurrent = {setCurrent}></GuestNavbar> : <Navbar setAuth = {setAuth} setCurrent = {setCurrent}></Navbar>}
             <div className={"main"}>
                 <div className={"tabHeaderContainer"}>
                     {current !== 4 ? <TabHeader setCurrent={setCurrent} current={current}></TabHeader> :<></>}

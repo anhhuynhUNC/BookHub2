@@ -3,7 +3,7 @@ import bookhubLogo from './bookhubLogo.svg'
 import blankProfile from './blank_profile.svg'
 import Hamburger from './HamNav'
 
-export default function Navbar() {
+export default function Navbar(props) {
     
     
     return (
@@ -18,7 +18,7 @@ export default function Navbar() {
             </div>
             <div className={"hamDiv"}>
                 <img className={"profile"} src={blankProfile} alt="this will be profile" /> 
-                < Hamburger className={"hamicon"} />
+                < Hamburger setAuth = {props.setAuth} setCurrent = {props.setCurrent} className={"hamicon"} />
             </div>
 
             <style jsx>{`

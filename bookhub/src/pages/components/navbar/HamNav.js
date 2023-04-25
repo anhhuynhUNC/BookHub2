@@ -1,7 +1,8 @@
+import React from 'react';
 import Hamburger from "./hamburger";
 import { useState } from 'react';
 
-export default function HamNav(){
+export default function HamNav(props){
 
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
@@ -16,7 +17,7 @@ export default function HamNav(){
                         <Hamburger isOpen={hamburgerOpen}/>
                     </div>
                 <ul>
-                    <li>Account Info</li>
+                    <li onClick={() => { props.setCurrent(3) }}>Account Info </li>
                     <li>Log Out</li>
                     
                 </ul>

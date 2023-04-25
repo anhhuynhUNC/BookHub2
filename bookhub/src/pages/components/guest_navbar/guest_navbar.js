@@ -29,14 +29,19 @@ export default function GuestNavbar(props) {
                 </h1>
             </div>
             <div className={"signin_or_up"}>
-                <form onSubmit={getSubmit}>
-                    <button className='button' type="submit">Login</button>
-                    <label>Username:</label>
-                    <input className={"login-input"} type="text" id="username" name="username" required />
-                    <label>Password:</label>
-                    <input className={"login-input"} type="password" id="password" name="password" required />
-                    {invalidText}
-                </form>
+                <div className={"login"}>
+                    <form onSubmit={getSubmit}>
+                    
+                        <label>Username:</label>
+                        <input className={"login-input"} type="text" id="username" name="username" required />
+                        <label>Password:</label>
+                        <input className={"login-input"} type="password" id="password" name="password" required />
+                        <button className='button' type="submit">Login</button>
+                        {invalidText}
+                    
+                    </form>
+                </div>
+                
 
                 <button className={"button"} type="button" onClick={() => { props.setCurrent(4) }}>Sign Up!</button>
             </div>
@@ -44,12 +49,19 @@ export default function GuestNavbar(props) {
 
             <style jsx>{`
 
+                .login {
+                    display: flex;
+                    position: relative;
+                    width: 500px;
+                }
+
                 .button {
                     width: 60px;
                     height: fit-content;
                     color: #452B14;
                     background-color: #DFD5D0;
                     border: none;
+                    margin-top: 1px;
                 }
 
                 .signin_or_up {
