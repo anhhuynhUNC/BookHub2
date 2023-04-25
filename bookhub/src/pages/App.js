@@ -25,7 +25,7 @@ function App() {
 export default App;
  */
 
-import Feed from './components/feed'
+import Feed from './feed/feed'
 
 export default function App() {
   return (
