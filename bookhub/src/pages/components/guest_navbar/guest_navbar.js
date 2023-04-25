@@ -10,7 +10,7 @@ export default function GuestNavbar(props) {
         e.preventDefault();
         console.log(e);
         try {
-            handleLogin(false, e.target[1].value, e.target[2].value, props.setAuth, setText);
+            handleLogin(false, e.target[0].value, e.target[1].value, props.setAuth, setText);
         } 
         catch (e){
             setText(e);
@@ -36,8 +36,9 @@ export default function GuestNavbar(props) {
                         <input className={"login-input"} type="text" id="username" name="username" required />
                         <label>Password:</label>
                         <input className={"login-input"} type="password" id="password" name="password" required />
-                        <button className='button' type="submit">Login</button>
                         {invalidText}
+                        <button className='button' type="submit">Login</button>
+                        
                     
                     </form>
                 </div>
