@@ -37,11 +37,11 @@ export default function RowContainer(props) {
 
     return (
         <>
-            {showInBeginning() ? <button onClick={handleLeft}>prev</button> : <></>}
+            {showInBeginning() ? <leftbutton onClick={handleLeft}>{'<<'}</leftbutton> : <></>}
             <div className={"row"}>
             <Row data={data[car]}></Row>
             </div>
-            <button onClick={handleRight}>next</button>
+            <rightbutton onClick={handleRight}>{'>>'}</rightbutton>
         </>
     )
 }
