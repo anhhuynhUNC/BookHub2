@@ -10,7 +10,7 @@ export default function SignupPage(props) {
             setText("Unmatched passwords!");
             return;
         }
-        handleLogin(true, e.target[2].value, e.target[3].value, props.setCurrent, setText);
+        handleLogin(true, e.target[2].value, e.target[3].value, props.setCurrent, setText, e.target[0].value, e.target[1].value, props.setUID);
         return false;
     }
 
@@ -23,11 +23,11 @@ export default function SignupPage(props) {
             <form onSubmit={getSubmit}>
                 <div className="login-input-container">
                     <label>First Name</label>
-                    <input className="login-input" type="text" minLength="3" ></input>
+                    <input className="login-input" type="text" minLength="3" required></input>
                 </div>
                 <div className="login-input-container">
                     <label>Age</label>
-                    <input className="login-input" type="number" ></input>
+                    <input className="login-input" type="number" required></input>
                 </div>
                 <div className="login-input-container">
                     <label>Email</label>

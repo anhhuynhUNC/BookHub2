@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-
+import { CreateNewUser } from "../../../firebaseAPI/firebaseAPI";
 
 /**
  * Handles log in or sign up for users and throw errors if detected from Firebase's instance. Switch entire view
@@ -11,7 +11,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
  * @param {*} callback - callback function to handle switching to main screen
  * @param {*} setState - callback function to handle error processing
  */
-export default function handleLogin(boolean, email, password, callback, setState) {
+export default function handleLogin(boolean, email, password, callback, setState, name, age, setUID) {
     if (email == null || email == "") {
         throw "Invalid Login"
     }
@@ -21,12 +21,18 @@ export default function handleLogin(boolean, email, password, callback, setState
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                
+                // create new database entry for account (name and age)
+                console.log(user.uid);
+                CreateNewUser(user.uid, name, age, email);
+                setUID(user.uid);
+                
                 // switch back to explore view
                 callback();
-                // create new database entry for account (name and age)
+
             })
             .catch((error) => {
-                console.log(error.code);
+                console.log(error);
                 try {
                     handleErrorCode(error.code, setState)
                 } catch (e) {
@@ -37,18 +43,19 @@ export default function handleLogin(boolean, email, password, callback, setState
                 // ..
             });
     } else {
-        signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password, setUID)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user);
                 callback(true);
-                // ...
+                // set users uid to global variable
+                setUID(user.uid);
             })
             .catch((error) => {
+                console.log(error);
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(error.code)
                 try {
                     handleErrorCode(error.code, setState)
                 } catch (e) {

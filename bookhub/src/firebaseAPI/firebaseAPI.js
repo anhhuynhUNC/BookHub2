@@ -21,19 +21,18 @@ let app; if (!getApps().length) { app = initializeApp(firebaseConfig); } else { 
 const db = getDatabase();
 const dbRef = ref(getDatabase());
 
-export { db };
-
 // GET APIs
 /**
  * @param path: the path of database's data
  * @returns return value of database snapshot based on given param and path
  */
-function getData(path) {
-    const valueRef = ref(db, 'user1');
+function getData(path, callback) {
+    const valueRef = ref(db, path);
 
     onValue(valueRef, (snapshot) => {
         if (snapshot.exists()) {
             console.log(snapshot.val())
+            callback(Object.values(snapshot.val()));
             return snapshot.val();
         } else {
             return "No data";
@@ -41,6 +40,64 @@ function getData(path) {
     });
 
 }
+
+// POST APIs
+
+/**
+ * takes in uid, name, age email and add a user to the database at /users/{uid}
+ * 
+ * @param {*} uid user's special uid from authentication
+ * @param {*} name 
+ * @param {*} age 
+ * @param {*} email 
+ * @returns 
+ */
+function CreateNewUser(uid, name, age, email) {
+    const db = getDatabase();
+    //text post entry
+    const user_post = {
+        name: name,
+        age: age,
+        email: "" + email,
+        liked_books: { def: "value" } //need this to force array?
+    };
+
+    //retrieve key
+    const newKey = push(child(ref(db), 'users')).key;
+
+    const updates = {};
+    updates['/users/' + uid] = user_post;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
+}
+
+function addBookToUser(uid, name) {
+    const db = getDatabase();
+
+    const user_ref = ref(db, 'users/' + uid  + '/liked_books');
+    const book_ref = push(user_ref);
+
+    return set(book_ref, name);
+}
+
+
+// PUT APIS
+function updateData(content, key, date, category) {
+    const db = getDatabase();
+
+    //retrieve post
+    const path = 'Posts/' + key;
+    const post = ref(db, path);
+
+
+    const updates = {};
+    updates['/content'] = content;
+    updates['/time'] = date;
+    updates['/category'] = category;
+    update(ref(db, path), updates).catch(error => { alert("Unathorized Access!") });
+    return "";
+}
+
+
 
 //Google Books API
 /**
@@ -58,4 +115,4 @@ function getBook(name, author, subject) {
 
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=30`);
 }
-export { getData, getBook }
+export { getData, getBook, CreateNewUser, addBookToUser }

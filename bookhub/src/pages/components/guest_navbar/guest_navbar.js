@@ -10,7 +10,7 @@ export default function GuestNavbar(props) {
         e.preventDefault();
         console.log(e);
         try {
-            handleLogin(false, e.target[0].value, e.target[1].value, props.setAuth, setText);
+            handleLogin(false, e.target[0].value, e.target[1].value, props.setAuth, "","",setText, props.setUID);
         } 
         catch (e){
             setText(e);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import handleLogin from "./LoginFirebase";
 
 export default function LoginPage(props) {
@@ -50,4 +50,4 @@ export default function LoginPage(props) {
             <h2>{invalidText}</h2>
         </div>
     )
-}
+} */
