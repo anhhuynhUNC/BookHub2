@@ -5,9 +5,7 @@ export default function Bookshelf(){
 
     return (
         <div>
-            <h1>
-                Bookshelf content here
-            </h1>
+            <h3></h3>
         </div>
     )
 }

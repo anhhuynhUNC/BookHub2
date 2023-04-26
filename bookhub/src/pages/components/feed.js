@@ -20,7 +20,7 @@ export default function Feed() {
     const page = () => {
         switch (current) {
             case 1:
-                return <Explore default_data={default_data}></Explore>
+                return <Explore default_data={default_data} cb={setCurrent}></Explore>
             case 2:
                 return <Bookshelf></Bookshelf>
             case 3:
@@ -47,3 +47,11 @@ export default function Feed() {
         </div>
     )
 }
+
+//1.
+
+// Feed                                 var name = 1; {name + 1} //usestate
+    //Explore       //login
+        //Row
+            //Book
+                //Hover
