@@ -4,11 +4,15 @@ import handleLogin from "./LoginFirebase";
 export default function SignupPage(props) {
     let [invalidText, setText] = useState("");
 
+    const [genres,setGenres] = useState(["Horror", "Fantasy", "Science Fiction", "Biography", "Adventure", "Romance", "Mystery", "History", "Self-Help", "Children's Books"]);
+    let [yesGenres, setYesGenres] = useState([]);
+    let [noGenres, setNoGenres] = useState([]);
+
+    
+
     const [checkedState, setCheckedState] = useState(
         new Array(20).fill(false)
     );
-
-    const [total, setTotal] = useState(0);
 
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -21,6 +25,23 @@ export default function SignupPage(props) {
     // add db user pref here
     function getSubmit(e) {
         //figure out user prefs here
+        alert(checkedState);
+
+        for (let i = 0; i < 20; i++) {
+            if (i < 10) {
+                if (checkedState[i]) {
+                    yesGenres = yesGenres.concat(genres[i]).slice();
+                }
+            } else {
+                if (checkedState[i]) {
+                    noGenres = noGenres.concat(genres[i-10]).slice();
+                }
+            }
+        }
+        
+
+        alert(yesGenres);
+        alert(noGenres);
 
         //add user prefs to database here
 
@@ -29,11 +50,10 @@ export default function SignupPage(props) {
             setText("Unmatched passwords!");
             return;
         }
-        handleLogin(true, e.target[2].value, e.target[3].value, props.setCurrent, setText, e.target[0].value, e.target[1].value, props.setUID);
+        //need to add pages
+        handleLogin(true, e.target[2].value, e.target[3].value, props.setCurrent, setText, e.target[0].value, e.target[1].value, props.setUID, yesGenres, noGenres, e.target[5].value);
         return false;
     }
-
-    //Romance. Mystery. Horror. Biography. History. Self-help. Children's
 
     return (
         <div>
