@@ -52,14 +52,18 @@ function getData(path, callback) {
  * @param {*} email 
  * @returns 
  */
-function CreateNewUser(uid, name, age, email) {
+function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
     const db = getDatabase();
     //text post entry
     const user_post = {
         name: name,
         age: age,
         email: "" + email,
-        liked_books: { def: "value" } //need this to force array?
+        liked_books: { def: "value" }, //need this to force array?
+        liked_genres: yesGenres,
+        disliked_genres: noGenres, 
+        page_preference: pages
+
     };
 
     //retrieve key

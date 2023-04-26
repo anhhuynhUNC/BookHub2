@@ -53,7 +53,7 @@ export default function GuestNavbar(props) {
                 .login {
                     display: flex;
                     position: relative;
-                    width: 500px;
+                    width: 550px;
                 }
 
                 .button {
