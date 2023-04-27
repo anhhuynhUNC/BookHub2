@@ -59,7 +59,10 @@ function CreateNewUser(uid, name, age, email) {
         name: name,
         age: age,
         email: "" + email,
-        liked_books: { def: "value" } //need this to force array?
+        liked_books: {def: ""},
+        completed_books: { def: "" },
+        forLater_books: {def: ""},
+        lightReading: {def: ""}, //need this to force array?
     };
 
     //retrieve key
@@ -72,12 +75,33 @@ function CreateNewUser(uid, name, age, email) {
 
 function addBookToUser(uid, name) {
     const db = getDatabase();
-
     const user_ref = ref(db, 'users/' + uid  + '/liked_books');
     const book_ref = push(user_ref);
-
     return set(book_ref, name);
 }
+
+function addBookToCompleted(uid, name) {
+    const db = getDatabase();
+    const user_ref = ref(db, 'users/' + uid  + '/completed_books');
+    const book_ref = push(user_ref);
+    return set(book_ref, name)
+    
+}
+function addBookToForLater(uid, name) {
+    const db = getDatabase();
+    const user_ref = ref(db, 'users/' + uid  + '/forLater_books');
+    const book_ref = push(user_ref);
+    return set(book_ref, name)
+    
+}
+function addBookToLightReading(uid, name) {
+    const db = getDatabase();
+    const user_ref = ref(db, 'users/' + uid  + '/lightReading');
+    const book_ref = push(user_ref);
+    return set(book_ref, name)
+    
+}
+
 
 
 // PUT APIS
@@ -115,4 +139,4 @@ function getBook(name, author, subject) {
 
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=30`);
 }
-export { getData, getBook, CreateNewUser, addBookToUser }
+export { getData, getBook, CreateNewUser, addBookToUser, addBookToCompleted, addBookToForLater, addBookToLightReading }

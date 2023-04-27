@@ -28,7 +28,7 @@ export default function Book(props) {
     return (
         <div ref={inputRef} className={"bookContainer"} onMouseEnter={() => { hoverOn() }} onMouseLeave={() => { hoverOff() }}>
             <img className={"img"} src={source} alt="cover" ></img>
-            {hover ? <HoverAtom style={{ top: `${metrics.top + metrics.height / 2}px`, left: `${metrics.left + metrics.width / 2}px`}} description={props.description} name={props.name} authors = {props.authors}></HoverAtom> : <></>}
+            {hover ? <HoverAtom name = {props.name} uid={props.uid} style={{ top: `${metrics.top + metrics.height / 2}px`, left: `${metrics.left + metrics.width / 2}px`}} description={props.description} name={props.name} authors = {props.authors}></HoverAtom> : <></>}
         </div>
 
     )
