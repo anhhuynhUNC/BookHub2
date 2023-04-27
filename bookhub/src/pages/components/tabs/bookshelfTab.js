@@ -19,7 +19,7 @@ export default function Bookshelf(props) {
         GetCompleted(props.uid);
         GetForLater(props.uid);
         GetLightReading(props.uid);
-      }, []);
+      }, [props.auth]);
 
     function GetForLater(uid) {
         getData('/users/' + uid + '/forLater_books', setBooks2);
@@ -30,7 +30,7 @@ export default function Bookshelf(props) {
     }
 
 
-
+    //testing function
     function testAddBook(uid, name){
         addBookToUser(uid, name);
     }

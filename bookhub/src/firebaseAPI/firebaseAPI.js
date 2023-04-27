@@ -59,12 +59,12 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
         name: name,
         age: age,
         email: "" + email,
-        liked_books: {def: ""},
+        liked_books: { def: "" },
         completed_books: { def: "" },
-        forLater_books: {def: ""},
-        lightReading: {def: ""}, //need this to force array?
+        forLater_books: { def: "" },
+        lightReading: { def: "" }, //need this to force array?
         liked_genres: yesGenres,
-        disliked_genres: noGenres, 
+        disliked_genres: noGenres,
         page_preference: pages
     };
 
@@ -76,33 +76,76 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
     return update(ref(db), updates).catch((error) => { console.log(error) });
 }
 
-function addBookToUser(uid, name) {
+function addBookToUser(uid, name, auth) {
+    if (!auth) {
+        //alert replace later
+        alert("Not Logged In!")
+        return;
+    }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid  + '/liked_books');
+    const user_ref = ref(db, 'users/' + uid + '/liked_books');
     const book_ref = push(user_ref);
     return set(book_ref, name);
 }
 
-function addBookToCompleted(uid, name) {
+/**
+ * 
+ * @param {*} uid 
+ * @param {*} name 
+ * @param {*} auth 
+ * @returns 
+ */
+function addBookToCompleted(uid, name, auth) {
+    if (!auth) {
+        //alert replace later
+        alert("Not Logged In!")
+        return;
+    }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid  + '/completed_books');
+    const user_ref = ref(db, 'users/' + uid + '/completed_books');
     const book_ref = push(user_ref);
     return set(book_ref, name)
-    
+
 }
-function addBookToForLater(uid, name) {
+
+/**
+ * 
+ * @param {*} uid 
+ * @param {*} name 
+ * @param {*} auth 
+ * @returns 
+ */
+function addBookToForLater(uid, name, auth) {
+    if (!auth) {
+        //alert replace later
+        alert("Not Logged In!")
+        return;
+    }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid  + '/forLater_books');
+    const user_ref = ref(db, 'users/' + uid + '/forLater_books');
     const book_ref = push(user_ref);
     return set(book_ref, name)
-    
+
 }
-function addBookToLightReading(uid, name) {
+
+/**
+ * 
+ * @param {*} uid 
+ * @param {*} name 
+ * @param {*} auth 
+ * @returns 
+ */
+function addBookToLightReading(uid, name, auth) {
+    if (!auth) {
+        //alert replace later
+        alert("Not Logged In!")
+        return;
+    }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid  + '/lightReading');
+    const user_ref = ref(db, 'users/' + uid + '/lightReading');
     const book_ref = push(user_ref);
     return set(book_ref, name)
-    
+
 }
 
 
