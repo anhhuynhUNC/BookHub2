@@ -45,7 +45,7 @@ button{
   position: absolute;
 }
 
-rightbutton {
+.rightbutton {
     height: 100px;
     width: 100px;
     position: absolute;
@@ -62,7 +62,7 @@ rightbutton {
     padding-left: 50px;
   }
 
-  leftbutton {
+.leftbutton {
     height: 100px;
     width: 100px;
     position: absolute;
@@ -237,3 +237,5 @@ body{
   font-size: 12px;
   border-radius: 5px;
 }
+
+
