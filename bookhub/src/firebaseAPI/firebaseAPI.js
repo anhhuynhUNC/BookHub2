@@ -52,7 +52,7 @@ function getData(path, callback) {
  * @param {*} email 
  * @returns 
  */
-function CreateNewUser(uid, name, age, email) {
+function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
     const db = getDatabase();
     //text post entry
     const user_post = {
@@ -63,6 +63,9 @@ function CreateNewUser(uid, name, age, email) {
         completed_books: { def: "" },
         forLater_books: {def: ""},
         lightReading: {def: ""}, //need this to force array?
+        liked_genres: yesGenres,
+        disliked_genres: noGenres, 
+        page_preference: pages
     };
 
     //retrieve key
