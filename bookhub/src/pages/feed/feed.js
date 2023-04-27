@@ -24,7 +24,7 @@ export default function Feed() {
     const page = () => {
         switch (current) {
             case 1:
-                return <Explore default_data={default_data} ></Explore>
+                return <Explore default_data={default_data} uid={uid} auth={auth}></Explore>
             case 2:
                 return <Bookshelf auth={auth} uid={uid}></Bookshelf>
             case 3:

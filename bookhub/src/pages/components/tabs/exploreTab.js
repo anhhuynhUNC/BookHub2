@@ -3,7 +3,7 @@ import Explore_default from '../exploreTabContainer/explore_default'
 export default function Explore(props) {
     return (
 
-        <Explore_default data={props.default_data}></Explore_default>
+        <Explore_default data={props.default_data} uid={props.uid} auth={props.auth}></Explore_default> 
 
     )
 
