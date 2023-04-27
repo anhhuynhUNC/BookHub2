@@ -35,11 +35,13 @@ export default function RowContainer(props) {
         return true;
     }
 
+   
+
     return (
         <>
             {showInBeginning() ? <leftbutton onClick={handleLeft}>{'<<'}</leftbutton> : <></>}
             <div className={"row"}>
-            <Row data={data[car]}></Row>
+            <Row data={data[car]} uid={props.uid}></Row>
             </div>
             <rightbutton onClick={handleRight}>{'>>'}</rightbutton>
         </>
