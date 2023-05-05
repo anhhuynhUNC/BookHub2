@@ -1,6 +1,8 @@
 import { useState } from "react";
 import handleLogin from "./LoginFirebase";
 
+
+
 export default function SignupPage(props) {
     let [invalidText, setText] = useState("");
 
@@ -56,7 +58,25 @@ export default function SignupPage(props) {
     }
 
     return (
+
+
         <div>
+            <style jsx>{`
+        .create {
+            width: 60px;
+                    height: 65px;
+                    width: 200px;
+                    color: #452B14;
+                    background-color: white;
+                    border: none;
+                    margin-top: 30px;
+                    border-radius: 10px;
+                    font-family: Rockwell;
+                    font-size: 25px;
+                    font-color: #466422;
+        }
+        `}</style>
+
             <h1>THANK YOU FOR CHOOSING BOOKHUB!</h1>
             <h2>LET'S START WITH THE BASICS:</h2>
             <p>(all fields are required!)</p>
@@ -297,7 +317,7 @@ export default function SignupPage(props) {
 
                 
 
-                <button type="submit">Create user</button>
+                <button className = "create" type="submit">Create user</button>
             </form>
             <br></br>
             <br></br>
@@ -306,7 +326,7 @@ export default function SignupPage(props) {
             <br></br>
             {/* remove later!!! */}
             <h2>{invalidText}</h2>
-            <button type = "button" onClick={()=>{props.back(1)}}>Guest Experience</button>
+            <button className = "create" type = "button" onClick={()=>{props.back(1)}}>Guest Experience</button>
         </div>
     )
 }

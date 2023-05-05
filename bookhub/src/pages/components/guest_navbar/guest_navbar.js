@@ -44,16 +44,37 @@ export default function GuestNavbar(props) {
                 </div>
                 
 
-                <button className={"button"} type="button" onClick={() => { props.setCurrent(4) }}>Sign Up!</button>
+                <button className={"signupbutton"} type="signupbutton"  onClick={() => { props.setCurrent(4) }}>Sign Up!</button>
             </div>
 
 
             <style jsx>{`
 
+                .title {
+                    padding: 8px;
+                    font-family: Rockwell;
+                    color: #466422;
+                }
+
                 .login {
                     display: flex;
                     position: relative;
                     width: 550px;
+                    font-family: Rockwell;
+                }
+
+                .signupbutton {
+                    width: 60px;
+                    height: fit-content;
+                    color: #452B14;
+                    background-color: #DFD5D0;
+                    border: none;
+                    margin-top: 1px;
+                    border-radius: 10px;
+                    margin-left: 181px;
+                    height: 15px;
+                    font-family: Rockwell;
+                    padding: 3px;
                 }
 
                 .button {
@@ -63,6 +84,10 @@ export default function GuestNavbar(props) {
                     background-color: #DFD5D0;
                     border: none;
                     margin-top: 1px;
+                    border-radius: 10px;
+                    height: 15px;
+                    font-family: Rockwell;
+                    padding: 3px;
                 }
 
                 .signin_or_up {
@@ -75,6 +100,13 @@ export default function GuestNavbar(props) {
                 input {
                     margin-right: 3px;
                     margin-left: 1px;
+                    border-radius: 10px;
+                    border-top-width: 0;
+                    border-left-width: 0;
+                    border-bottom-width: 0;
+                    border-right-width: 0;
+                    height: 18px;
+                    background-color: #DFD5D0;
                 }
 
                 form {
