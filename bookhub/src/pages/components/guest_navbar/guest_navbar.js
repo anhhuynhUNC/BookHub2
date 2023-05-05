@@ -4,13 +4,14 @@ import { useState } from 'react';
 import handleLogin from "../Login/LoginFirebase";
 
 export default function GuestNavbar(props) {
-    let [invalidText, setText] = useState("");
+   let [invalidText, setText] = useState("");
 
+    //boolean, email, password, callback, setState, name, age, setUID, yesGenres, noGenres, pages
     function getSubmit(e) {
         e.preventDefault();
         console.log(e);
         try {
-            handleLogin(false, e.target[0].value, e.target[1].value, props.setAuth, "","",setText, props.setUID);
+            handleLogin(false, e.target[0].value, e.target[1].value, props.setAuth, setText, "","", props.setUID, [], [], "");
         } 
         catch (e){
             setText(e);
