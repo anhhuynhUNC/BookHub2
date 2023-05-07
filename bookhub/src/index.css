@@ -92,7 +92,7 @@ body{
 .feedContainer,
 .topContainer {
   height: 100%;
-  font-family: 'calibri';
+  font-family: Rockwell;
   color: black;
 }
 
@@ -203,6 +203,7 @@ body{
 
 /* Atom css */
 .bookContainer {
+  padding-bottom: 20px;
   display: inline-block;
   margin: 10px;
   height: 80%;
@@ -237,5 +238,4 @@ body{
   font-size: 12px;
   border-radius: 5px;
 }
-
 
