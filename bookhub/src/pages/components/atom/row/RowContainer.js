@@ -1,6 +1,8 @@
 import Row from "./rowAtom"
 import { getRowList, getRowList2 } from "../../../../utils/atomUtil"
 import { useState } from "react";
+import rightarrow from '../../../../assets/Expand_right_double.svg'
+import leftarrow from '../../../../assets/Expand_left_double.svg'
 
 export default function RowContainer(props) {
     console.log(props.data);
@@ -50,18 +52,12 @@ export default function RowContainer(props) {
 
     return (
         <>
-            {showInBeginning() ? <svg className="leftbutton" onClick={handleLeft} xmlns="http://www.w3.org/2000/svg" width="61" height="82" viewBox="0 0 61 82" fill="none">
-                <path d="M30.5 61.5L15.25 41L30.5 20.5" stroke="#475800" stroke-width="2" />
-                <path d="M45.75 61.5L30.5 41L45.75 20.5" stroke="#475800" stroke-width="2" />
-            </svg> : <></>}
+            {showInBeginning() ? <img className="leftbutton" onClick={handleLeft} src={leftarrow}></img> : <></>}
             <div className={"row"}>
                 <Row isExplore={props.isExplore} data={data[car]} uid={props.uid} auth={props.auth}></Row>
             </div>
-          {/*   {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>} */}
-            {lessThanSix() ? <></> : <svg className="rightbutton" onClick={handleRight} xmlns="http://www.w3.org/2000/svg" width="61" height="82" viewBox="0 0 61 82" fill="none">
-                <path d="M30.5 61.5L45.75 41L30.5 20.5" stroke="#475800" stroke-width="2" />
-                <path d="M15.25 61.5L30.5 41L15.25 20.5" stroke="#475800" stroke-width="2" />
-            </svg>}
+            {/*   {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>} */}
+            {lessThanSix() ? <></> : <img className="rightbutton" onClick={handleRight} src={rightarrow}></img>}
         </>
     )
 }

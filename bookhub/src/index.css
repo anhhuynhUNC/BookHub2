@@ -39,35 +39,38 @@ body {
   background-color: #AB907D;
 }
 
-button{
+button {
   height: 100px;
   width: 100px;
   position: absolute;
 }
 
 .rightbutton {
-    height: 120px;
-    width: 120px;
-    position: absolute;
-    font-size: 75px;
-    padding-top: 50px;
-    right: 10%;
-  }
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  font-size: 75px;
+  padding-top: 50px;
+  right: 10%;
+}
 
 .leftbutton {
-    height: 120px;
-    width: 120px;
-    position: absolute;
-    left: 10%;
-    padding-top: 50px;
-    z-index: 5;
-  }
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  left: 10%;
+  padding-top: 50px;
+  z-index: 5;
+}
 
-main, body, html,  #root {
+main,
+body,
+html,
+#root {
   height: 100%;
 }
 
-body{
+body {
   overflow: hidden;
 }
 
@@ -222,3 +225,39 @@ body{
   border-radius: 5px;
 }
 
+.reactionContainer {
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  vertical-align: top;
+}
+
+.reactionContainer button {
+  width: 90%;
+  display: block;
+  position: relative;
+  height: 20px;
+  font-size: 8px;
+}
+
+svg:hover,
+button:hover {
+  cursor: pointer;
+}
+
+.rightbutton:hover,
+.leftbutton:hover {
+  cursor: pointer;
+}
+
+.infoContainer {
+  display: inline-block;
+  width: 90%;
+  height: 100%;
+
+}
+
+#happyFace:hover,
+#sadFace:hover {
+  cursor: pointer;
+}
