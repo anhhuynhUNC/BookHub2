@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function RowContainer(props) {
     console.log(props.data);
     const [car, setCar] = useState(0);
-    let data = getRowList(props.data);
+    let data = getRowList(props.data, props.dislikes);
     const [hasReachEnd, setHasReachEnd] = useState(false);
 
     function handleRight() {
