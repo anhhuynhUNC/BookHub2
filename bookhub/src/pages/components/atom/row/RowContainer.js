@@ -38,9 +38,9 @@ export default function RowContainer(props) {
         return true;
     }
 
-    function lessThanSix(){
+    function lessThanSix() {
         console.log(data);
-        if(data.length === 0 || data.length <= 1){
+        if (data.length === 0 || data.length <= 1) {
             return true;
         } else {
             return false;
@@ -50,11 +50,18 @@ export default function RowContainer(props) {
 
     return (
         <>
-            {showInBeginning() ? <button className="leftbutton" onClick={handleLeft}>{'<<'}</button> : <></>}
+            {showInBeginning() ? <svg className="leftbutton" onClick={handleLeft} xmlns="http://www.w3.org/2000/svg" width="61" height="82" viewBox="0 0 61 82" fill="none">
+                <path d="M30.5 61.5L15.25 41L30.5 20.5" stroke="#475800" stroke-width="2" />
+                <path d="M45.75 61.5L30.5 41L45.75 20.5" stroke="#475800" stroke-width="2" />
+            </svg> : <></>}
             <div className={"row"}>
                 <Row isExplore={props.isExplore} data={data[car]} uid={props.uid} auth={props.auth}></Row>
             </div>
-            {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>}
+          {/*   {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>} */}
+            {lessThanSix() ? <></> : <svg className="rightbutton" onClick={handleRight} xmlns="http://www.w3.org/2000/svg" width="61" height="82" viewBox="0 0 61 82" fill="none">
+                <path d="M30.5 61.5L45.75 41L30.5 20.5" stroke="#475800" stroke-width="2" />
+                <path d="M15.25 61.5L30.5 41L15.25 20.5" stroke="#475800" stroke-width="2" />
+            </svg>}
         </>
     )
 }

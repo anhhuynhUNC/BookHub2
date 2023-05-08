@@ -46,38 +46,21 @@ button{
 }
 
 .rightbutton {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     position: absolute;
-    background-color: transparent;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    color: rgb(5, 82, 5);
-    font-family: Marker Felt;
-    font-style: Marker Felt;
     font-size: 75px;
     padding-top: 50px;
-    padding-left: 50px;
+    right: 10%;
   }
 
 .leftbutton {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     position: absolute;
-    left: 0px;
-    background-color: transparent;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    color: rgb(5, 82, 5);
-    font-family: Marker Felt;
-    font-style: Marker Felt;
-    font-size: 75px;
+    left: 10%;
     padding-top: 50px;
-    
+    z-index: 5;
   }
 
 main, body, html,  #root {
