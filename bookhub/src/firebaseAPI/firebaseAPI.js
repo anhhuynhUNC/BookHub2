@@ -257,6 +257,6 @@ function getBook(name, author, subject) {
     let author_q = author === "any" ? "" : `+inauthor:${author}`
     let subject_q = subject === "any" ? "" : `+subject:${subject}`
 
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=30`);
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=40`);
 }
 export { getGenre, getDislikes, getData, getBook, CreateNewUser, addBookToUser, addBookToCompleted, addBookToForLater, addBookToLightReading, addBooktoDislike }

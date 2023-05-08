@@ -9,13 +9,15 @@ function getRowList(data, dislikes) {
     console.log(data);
     let newData = [];
     let counter = 0;
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < 30; i++) {
+        if(data[i] == undefined) return newData;
+        
         if (counter == 6 || counter == 0) {
             counter = 0;
             let temp = [];
             newData.push(temp);
         }
-        console.log(data[i].volumeInfo.title);
+
         if (!dislikes.includes(data[i].volumeInfo.title)) {
             newData[Math.floor(i / 6)].push(data[i]);
             counter++;
