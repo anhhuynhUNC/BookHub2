@@ -10,8 +10,8 @@ function getRowList(data, dislikes) {
     let newData = [];
     let counter = 0;
     for (let i = 0; i < 30; i++) {
-        if(data[i] == undefined) return newData;
-        
+        if (data[i] == undefined) return newData;
+
         if (counter == 6 || counter == 0) {
             counter = 0;
             let temp = [];
@@ -23,9 +23,32 @@ function getRowList(data, dislikes) {
             counter++;
         } else {
             data.splice(i, 1);
-            i --;
+            i--;
             continue;
         }
+    }
+    console.log(newData);
+    return newData;
+
+}
+
+function getRowList2(data) {
+    if (data == undefined || data.length === 0) return [];
+    console.log(data);
+    let newData = [];
+    let counter = 0;
+    for (let i = 0; i < data.length; i++) {
+        if (data[i] == undefined) return newData;
+
+        if (counter == 6 || counter == 0) {
+            counter = 0;
+            let temp = [];
+            newData.push(temp);
+        }
+
+        newData[Math.floor(i / 6)].push(data[i]);
+        counter++;
+
     }
     console.log(newData);
     return newData;
@@ -48,4 +71,4 @@ function getImage(id) {
 
 }
 
-export { getImage, getRowList }
+export { getImage, getRowList, getRowList2 }

@@ -89,10 +89,6 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
         name: name,
         age: age,
         email: "" + email,
-        liked_books: { def: "" },
-        completed_books: { def: "" },
-        forLater_books: { def: "" },
-        lightReading: { def: "" }, //need this to force array?
         liked_genres: yesGenres,
         disliked_genres: noGenres,
         page_preference: pages
@@ -125,17 +121,37 @@ function addBookToUser(uid, name, auth) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToCompleted(uid, name, auth) {
+function addBookToCompleted(uid, data, name, auth) {
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
         return;
     }
+    let included = false;
     const db = getDatabase();
     const user_ref = ref(db, 'users/' + uid + '/completed_books');
-    const book_ref = push(user_ref);
-    return set(book_ref, name)
+    const check_ref = ref(db, 'users/' + uid + '/completed_books_names');
 
+    console.log(data);
+    onValue(check_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            console.log(books)
+            console.log(name);
+            console.log(books.includes(name))
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
+    //retrieve key
+    const newKey = push(child(ref(db), '/users/' + uid + '/completed_books/')).key;
+
+    const updates = {};
+    updates['/users/' + uid + '/completed_books/' + newKey] = data;
+    updates['/users/' + uid + '/completed_books_names/' + newKey] = name;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
 }
 
 /**
@@ -145,7 +161,7 @@ function addBookToCompleted(uid, name, auth) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToForLater(uid, name, auth) {
+function addBookToForLater(uid, data, name, auth) {
     let included = false;
 
     if (!auth) {
@@ -154,7 +170,7 @@ function addBookToForLater(uid, name, auth) {
         return;
     }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid + '/forLater_books/');
+    const user_ref = ref(db, 'users/' + uid + '/liked_books/');
 
     onValue(user_ref, (snapshot) => {
         if (snapshot.exists()) {
@@ -169,7 +185,7 @@ function addBookToForLater(uid, name, auth) {
     const newKey = push(child(ref(db), '/users/' + uid + '/forLater_books/')).key;
 
     const updates = {};
-    updates['/users/' + uid + '/forLater_books/' + newKey] = name;
+    updates['/users/' + uid + '/forLater_books/' + newKey] = data;
     updates['/users/' + uid + '/liked_books/' + newKey] = name;
     return update(ref(db), updates).catch((error) => { console.log(error) });
 
@@ -182,16 +198,37 @@ function addBookToForLater(uid, name, auth) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToLightReading(uid, name, auth) {
+function addBookToLightReading(uid, data, name, auth) {
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
         return;
     }
+    let included = false;
     const db = getDatabase();
     const user_ref = ref(db, 'users/' + uid + '/lightReading');
-    const book_ref = push(user_ref);
-    return set(book_ref, name)
+    const check_ref = ref(db, 'users/' + uid + '/lightReading_names');
+
+    console.log(data);
+    onValue(check_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            console.log(books)
+            console.log(name);
+            console.log(books.includes(name))
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
+    //retrieve key
+    const newKey = push(child(ref(db), '/users/' + uid + '/lightReading/')).key;
+
+    const updates = {};
+    updates['/users/' + uid + '/lightReading/' + newKey] = data;
+    updates['/users/' + uid + '/lightReading_names/' + newKey] = name;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
 
 }
 

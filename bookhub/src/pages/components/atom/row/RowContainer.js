@@ -1,11 +1,14 @@
 import Row from "./rowAtom"
-import { getRowList } from "../../../../utils/atomUtil"
+import { getRowList, getRowList2 } from "../../../../utils/atomUtil"
 import { useState } from "react";
 
 export default function RowContainer(props) {
     console.log(props.data);
     const [car, setCar] = useState(0);
-    let data = getRowList(props.data, props.dislikes);
+    let data = []
+    if (props.isExplore) data = getRowList(props.data, props.dislikes);
+    else data = getRowList2(props.data);
+
     const [hasReachEnd, setHasReachEnd] = useState(false);
 
     function handleRight() {
@@ -35,6 +38,14 @@ export default function RowContainer(props) {
         return true;
     }
 
+    function lessThanSix(){
+        console.log(data);
+        if(data.length === 0 || data.length <= 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     return (
@@ -43,7 +54,7 @@ export default function RowContainer(props) {
             <div className={"row"}>
                 <Row data={data[car]} uid={props.uid} auth={props.auth}></Row>
             </div>
-            <button className="rightbutton" onClick={handleRight}>{'>>'}</button>
+            {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>}
         </>
     )
 }

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import { addBookToUser, getData } from "../../../firebaseAPI/firebaseAPI"
+import RowContainer from "../atom/row/RowContainer";
 
 export default function Bookshelf(props) {
     // use props.auth to check if user has logged in/ recently made account
 
     //testing variables for book add/ retrieval
-    let [books, setBooks] = useState([2,3,4,5,6]);
-    let [books2, setBooks2] = useState([2,3,4,5,6]);
-    let [books3, setBooks3] = useState([2,3,4,5,6]);
+    let [books, setBooks] = useState([]);
+    let [books2, setBooks2] = useState([]);
+    let [books3, setBooks3] = useState([]);
 
 
 
@@ -19,7 +20,7 @@ export default function Bookshelf(props) {
         GetCompleted(props.uid);
         GetForLater(props.uid);
         GetLightReading(props.uid);
-      }, [props.auth]);
+    }, [props.auth]);
 
     function GetForLater(uid) {
         getData('/users/' + uid + '/forLater_books', setBooks2);
@@ -31,19 +32,34 @@ export default function Bookshelf(props) {
 
 
     //testing function
-    function testAddBook(uid, name){
+    function testAddBook(uid, name) {
         addBookToUser(uid, name);
     }
 
-
-
-
     return (
         <div>
-            {props.auth ? <h1>Your Bookshelves</h1> : <h1>You are not logged in</h1>}
+            {props.auth ?
+                <div>
+                    <h1>Your Bookshelves</h1>
+                    <div className={"rowContainer"} >
+                        <h3>Completed</h3>
+                        <RowContainer isExplore={false} dislikes={props.dislikes} data={books} uid={props.uid} auth={props.auth}></RowContainer>
+                    </div>
+                    <div className={"rowContainer"} >
+                        <h3>For later</h3>
+                        <RowContainer isExplore={false} dislikes={props.dislikes} data={books2} uid={props.uid} auth={props.auth}></RowContainer>
+                    </div>
+                    <div className={"rowContainer"} >
+                        <h3>LightReading</h3>
+                        <RowContainer isExplore={false} dislikes={props.dislikes} data={books3} uid={props.uid} auth={props.auth}></RowContainer>
+                    </div>
+                </div>
+
+                : <h1>You are not logged in</h1>}
             {/* <h1>{props.uid}</h1> */}
-        
-            <table>
+
+
+            {/* <table>
   <thead>
     <tr>
       <th style={{fontSize: "2.0rem", padding: "0.5rem 1rem"}}>Completed</th>
@@ -75,15 +91,15 @@ export default function Bookshelf(props) {
     </tr>
 
   </tbody>
-</table>
+</table> */}
 
 
-    
-            
-  
-           
 
-            
+
+
+
+
+
 
 
 
@@ -95,7 +111,7 @@ export default function Bookshelf(props) {
             <button type="button" onClick={() => { GetCompleted(props.uid) }}>GET BOOK</button> */}
             <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
 
-{/*             
+            {/*             
             {books.map((val) => { 
                 return (
                     <div> {val}</div>

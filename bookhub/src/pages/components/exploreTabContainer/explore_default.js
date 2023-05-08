@@ -11,7 +11,7 @@ export default function Explore_default(props) {
             {props.data.map((val, i) => {
                 return <div className={"rowContainer"} key={i}>
                     <h3>{val.attr == undefined ? "" : val.attr}</h3>
-                    <RowContainer dislikes={props.dislikes} data={val.data} key={i} uid={props.uid} auth={props.auth}></RowContainer>
+                    <RowContainer isExplore={true} dislikes={props.dislikes} data={val.data} key={i} uid={props.uid} auth={props.auth}></RowContainer>
                 </div>
             })}
         </>
