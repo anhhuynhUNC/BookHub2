@@ -79,7 +79,7 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
  function addBookToUser(uid, name, auth) {
     if (!auth) {
         //alert replace later
-        //alert("Not Logged In!")
+        alert("Not Logged In!")
         return;
     }
     const db = getDatabase();
@@ -98,7 +98,7 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
 function addBookToCompleted(uid, name, auth) {
     if (!auth) {
         //alert replace later
-        //alert("Not Logged In!")
+        alert("Not Logged In!")
         return;
     }
     const db = getDatabase();
@@ -118,7 +118,7 @@ function addBookToCompleted(uid, name, auth) {
 function addBookToForLater(uid, name, auth) {
     if (!auth) {
         //alert replace later
-        //alert("Not Logged In!")
+        alert("Not Logged In!")
         return;
     }
     const db = getDatabase();
@@ -138,7 +138,7 @@ function addBookToForLater(uid, name, auth) {
 function addBookToLightReading(uid, name, auth) {
     if (!auth) {
         //alert replace later
-        //alert("Not Logged In!")
+        alert("Not Logged In!")
         return;
     }
     const db = getDatabase();
