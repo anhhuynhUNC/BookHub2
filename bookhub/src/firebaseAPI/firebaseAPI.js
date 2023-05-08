@@ -31,7 +31,6 @@ function getData(path, callback) {
 
     onValue(valueRef, (snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val())
             callback(Object.values(snapshot.val()));
             return snapshot.val();
         } else {
@@ -39,6 +38,37 @@ function getData(path, callback) {
         }
     });
 
+}
+
+function getGenre(uid) {
+    return new Promise(function (resolve, reject) {
+        try {
+            const valueRef = ref(db, 'users/' + uid + '/liked_genres');
+
+            onValue(valueRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    resolve(Object.values(snapshot.val()));
+                } else {
+                    resolve(null);
+                }
+            });
+        }
+        catch (e) {
+            reject(e);
+        }
+    })
+}
+
+function getDislikes(uid, cb) {
+    const valueRef = ref(db, 'users/' + uid + '/dislike');
+
+    onValue(valueRef, (snapshot) => {
+        if (snapshot.exists()) {
+            cb(Object.values(snapshot.val()));
+        } else {
+            cb([]);
+        }
+    });
 }
 
 // POST APIs
@@ -59,10 +89,6 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
         name: name,
         age: age,
         email: "" + email,
-        liked_books: { def: "" },
-        completed_books: { def: "" },
-        forLater_books: { def: "" },
-        lightReading: { def: "" }, //need this to force array?
         liked_genres: yesGenres,
         disliked_genres: noGenres,
         page_preference: pages
@@ -95,17 +121,37 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToCompleted(uid, name, auth) {
+function addBookToCompleted(uid, data, name, auth) {
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
         return;
     }
+    let included = false;
     const db = getDatabase();
     const user_ref = ref(db, 'users/' + uid + '/completed_books');
-    const book_ref = push(user_ref);
-    return set(book_ref, name)
+    const check_ref = ref(db, 'users/' + uid + '/completed_books_names');
 
+    console.log(data);
+    onValue(check_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            console.log(books)
+            console.log(name);
+            console.log(books.includes(name))
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
+    //retrieve key
+    const newKey = push(child(ref(db), '/users/' + uid + '/completed_books/')).key;
+
+    const updates = {};
+    updates['/users/' + uid + '/completed_books/' + newKey] = data;
+    updates['/users/' + uid + '/completed_books_names/' + newKey] = name;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
 }
 
 /**
@@ -115,16 +161,33 @@ function addBookToCompleted(uid, name, auth) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToForLater(uid, name, auth) {
+function addBookToForLater(uid, data, name, auth) {
+    let included = false;
+
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
         return;
     }
     const db = getDatabase();
-    const user_ref = ref(db, 'users/' + uid + '/forLater_books');
-    const book_ref = push(user_ref);
-    return set(book_ref, name)
+    const user_ref = ref(db, 'users/' + uid + '/liked_books/');
+
+    onValue(user_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
+    //retrieve key
+    const newKey = push(child(ref(db), '/users/' + uid + '/forLater_books/')).key;
+
+    const updates = {};
+    updates['/users/' + uid + '/forLater_books/' + newKey] = data;
+    updates['/users/' + uid + '/liked_books/' + newKey] = name;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
 
 }
 
@@ -135,17 +198,65 @@ function addBookToForLater(uid, name, auth) {
  * @param {*} auth 
  * @returns 
  */
-function addBookToLightReading(uid, name, auth) {
+function addBookToLightReading(uid, data, name, auth) {
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
         return;
     }
+    let included = false;
     const db = getDatabase();
     const user_ref = ref(db, 'users/' + uid + '/lightReading');
+    const check_ref = ref(db, 'users/' + uid + '/lightReading_names');
+
+    console.log(data);
+    onValue(check_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            console.log(books)
+            console.log(name);
+            console.log(books.includes(name))
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
+    //retrieve key
+    const newKey = push(child(ref(db), '/users/' + uid + '/lightReading/')).key;
+
+    const updates = {};
+    updates['/users/' + uid + '/lightReading/' + newKey] = data;
+    updates['/users/' + uid + '/lightReading_names/' + newKey] = name;
+    return update(ref(db), updates).catch((error) => { console.log(error) });
+
+}
+
+function addBooktoDislike(uid, name, auth) {
+    let included = false;
+    if (!auth) {
+        //alert replace later
+        alert("Not Logged In!")
+        return;
+    }
+
+    const db = getDatabase();
+    const user_ref = ref(db, 'users/' + uid + '/dislike');
+
+    onValue(user_ref, (snapshot) => {
+        if (snapshot.exists()) {
+            let books = Object.values(snapshot.val())
+            console.log(books)
+            console.log(name);
+            console.log(books.includes(name))
+            if (books.includes(name)) included = true;
+        }
+    });
+
+    if (included) return;
+
     const book_ref = push(user_ref);
     return set(book_ref, name)
-
 }
 
 
@@ -183,6 +294,6 @@ function getBook(name, author, subject) {
     let author_q = author === "any" ? "" : `+inauthor:${author}`
     let subject_q = subject === "any" ? "" : `+subject:${subject}`
 
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=30`);
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name_q}${author_q}${subject_q}&maxResults=40`);
 }
-export { getData, getBook, CreateNewUser, addBookToUser, addBookToCompleted, addBookToForLater, addBookToLightReading }
+export { getGenre, getDislikes, getData, getBook, CreateNewUser, addBookToUser, addBookToCompleted, addBookToForLater, addBookToLightReading, addBooktoDislike }
