@@ -36,7 +36,7 @@ export default function handleLogin(boolean, email, password, callback, setState
                 try {
                     handleErrorCode(error.code, setState)
                 } catch (e) {
-                    //alert(e);
+                    alert("Something went wrong.");
                 }
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -59,7 +59,7 @@ export default function handleLogin(boolean, email, password, callback, setState
                 try {
                     handleErrorCode(error.code, setState)
                 } catch (e) {
-                    //alert(e);
+                    alert("Invalid credentials.");
                 }
                 
             });
