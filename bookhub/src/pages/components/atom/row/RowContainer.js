@@ -52,7 +52,7 @@ export default function RowContainer(props) {
         <>
             {showInBeginning() ? <button className="leftbutton" onClick={handleLeft}>{'<<'}</button> : <></>}
             <div className={"row"}>
-                <Row data={data[car]} uid={props.uid} auth={props.auth}></Row>
+                <Row isExplore={props.isExplore} data={data[car]} uid={props.uid} auth={props.auth}></Row>
             </div>
             {lessThanSix() ? <></> : <button className="rightbutton" onClick={handleRight}>{'>>'}</button>}
         </>
