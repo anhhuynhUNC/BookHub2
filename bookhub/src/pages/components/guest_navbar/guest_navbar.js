@@ -65,21 +65,21 @@ export default function GuestNavbar(props) {
                 }
 
                 .signupbutton {
-                    width: 60px;
+                    width: 75px;
                     height: fit-content;
                     color: #452B14;
                     background-color: #DFD5D0;
                     border: none;
                     margin-top: 1px;
                     border-radius: 10px;
-                    margin-left: 181px;
+                    margin-left: 178px;
                     height: 15px;
                     font-family: Rockwell;
                     padding: 3px;
                 }
 
                 .button {
-                    width: 60px;
+                    width: 75px;
                     height: fit-content;
                     color: #452B14;
                     background-color: #DFD5D0;
