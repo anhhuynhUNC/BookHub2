@@ -238,6 +238,10 @@ body {
   position: relative;
   height: 20px;
   font-size: 8px;
+  font-family: "Rockwell";
+  font-size: 7px;
+  height: 28px;
+ 
 }
 
 svg:hover,
