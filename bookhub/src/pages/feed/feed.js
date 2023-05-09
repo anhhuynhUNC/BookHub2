@@ -9,6 +9,8 @@ import { updateFromSignup } from "./loginHelper";
 import GuestNavbar from "../components/guest_navbar/guest_navbar";
 import { default_fetch, personalized_fetch } from "../../utils/bookmatch";
 import SignupPage from "../components/Login/SignupPage";
+import Logout from "../components/Login/Logout";
+
 export default function Feed() {
     let [current, setCurrent] = useState(1);
     let [default_data, setDefaultData] = useState([]);
@@ -19,10 +21,13 @@ export default function Feed() {
 
     //use effect load current selection of books
     useEffect(() => {
-        if(!auth)
+        if (!auth) {
             default_fetch(setDefaultData);
-        else{
-            getDislikes(uid,setDislike);
+            //force logout if reload page
+            Logout();
+        }
+        else {
+            getDislikes(uid, setDislike);
             personalized_fetch(uid, setDefaultData)
         }
     }, [auth])

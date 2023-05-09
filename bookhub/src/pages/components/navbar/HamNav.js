@@ -18,7 +18,7 @@ export default function HamNav(props){
                     </div>
                 <ul>
                     <li onClick={() => { props.setCurrent(3) }}>Account Info </li>
-                    <li onClick={() => { window.location.reload(false); props.setCurrent(1) }}>Log Out</li> 
+                    <li onClick={() => { window.location.reload(false); props.setCurrent(1); }}>Log Out</li> 
                     
                 </ul>
                     
