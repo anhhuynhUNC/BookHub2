@@ -17,7 +17,7 @@ export default function HoverAtom(props) {
             <div className="infoContainer">
                 <h4>Title: {props.name}</h4>
                 <h4>Author: {props.authors === undefined ? "" : props.authors[0]}</h4>
-                <p>Description: {props.description}</p>
+                <p>Description: {props.description === undefined ? "No Description" : props.description}</p>
 
             </div>
         </div>
