@@ -102,7 +102,7 @@ function CreateNewUser(uid, name, age, email, yesGenres, noGenres, pages) {
     return update(ref(db), updates).catch((error) => { console.log(error) });
 }
 
-function addBookToUser(uid, name, auth) {
+ function addBookToUser(uid, name, auth) {
     if (!auth) {
         //alert replace later
         alert("Not Logged In!")
